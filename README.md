@@ -26,6 +26,10 @@ A lightweight client-side queue management web app for patient registration and 
   - Marks current serving patient complete and advances next waiting patient.
 - Form validation and user feedback alerts.
 
+## 🌐 Live Preview
+
+- View the deployed demo: https://yosefmelaku9876-max.github.io/Pqueue-mangement-/
+
 ## 🛠️ How to Run
 
 1. Open the project folder in your browser or ideally use a local server (recommended).
