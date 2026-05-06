@@ -2,43 +2,302 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Register | Smart PQMS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏥 Patient Registration - Smart PQMS</title>
+    
+    <!-- Favicon and App Icons -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><circle cx='32' cy='32' r='30' fill='%230056b3'/><rect x='28' y='16' width='8' height='32' fill='white' rx='2'/><rect x='16' y='28' width='32' height='8' fill='white' rx='2'/></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><circle cx='32' cy='32' r='30' fill='%230056b3'/><rect x='28' y='16' width='8' height='32' fill='white' rx='2'/><rect x='16' y='28' width='32' height='8' fill='white' rx='2'/></svg>">
+    
+    <!-- Meta tags -->
+    <meta name="description" content="Register new patients for the Smart PQMS healthcare queue management system. Emergency patients are automatically prioritized.">
+    <meta name="keywords" content="patient registration, healthcare queue, medical appointment, hospital registration">
+    <meta name="author" content="Yosef Melaku">
+    <meta name="theme-color" content="#0056b3">
+    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header><h1>Patient Registration</h1></header>
     <nav>
-        <a href="index.html">Home</a>
-        <a href="registration.html">Registration</a>
-        <a href="Queue.html">Queue No</a>
-        <a href="contact.html">Contact Us</a>
+        <a href="index.html">🏠 Home</a>
+        <a href="registration.html">📝 Register</a>
+        <a href="Queue.html">📊 Queue</a>
+        <a href="contact.html">📞 Contact</a>
     </nav>
 
     <section class="hero-small">
-        <h2>Patient Registration</h2>
-        <p>Enter patient details to join the live waiting queue.</p>
+        <h2>📝 Patient Registration</h2>
+        <p>Register new patients quickly and efficiently. Emergency patients are automatically prioritized in the queue system.</p>
     </section>
+    
     <div class="container">
-        <form id="regForm">
-            <div class="form-group"><label>First Name</label><input type="text" id="fname" placeholder="Enter full name" required></div>
-            <div class="form-group"><label>Age</label><input type="number" id="age" placeholder="Enter age" min="1" max="120" required></div>
-            <div class="form-group">
-                <label>Category (Triage)</label>
-                <select id="category" required>
-                    <option value="">-- Select Category --</option>
-                    <option value="Normal">Normal Patient</option>
-                    <option value="Emergency">Emergency Patient</option>
-                </select>
+        <div class="registration-grid">
+            <!-- Registration Form Section -->
+            <div class="dashboard-section">
+                <h3>👤 Patient Information</h3>
+                <form id="regForm">
+                    <div class="form-group">
+                        <label for="fname">👤 Patient Full Name</label>
+                        <input type="text" id="fname" placeholder="Enter patient's full name" required>
+                        <small class="field-help">Enter the complete name as it appears on ID</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="age">🎂 Age</label>
+                        <input type="number" id="age" placeholder="Enter age" min="1" max="120" required>
+                        <small class="field-help">Age must be between 1 and 120 years</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">📞 Phone Number (Optional)</label>
+                        <input type="tel" id="phone" placeholder="Enter phone number">
+                        <small class="field-help">For notifications and updates</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="category">🏥 Triage Category</label>
+                        <select id="category" required>
+                            <option value="">-- Select Patient Category --</option>
+                            <option value="Normal">👥 Normal Patient - Regular consultation</option>
+                            <option value="Emergency">🚨 Emergency Patient - Urgent medical attention</option>
+                        </select>
+                        <small class="field-help">Emergency patients are automatically prioritized</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="reason">📋 Reason for Visit (Optional)</label>
+                        <textarea id="reason" rows="3" placeholder="Brief description of the medical concern"></textarea>
+                        <small class="field-help">Helps medical staff prepare for consultation</small>
+                    </div>
+                    
+                    <button type="submit" class="action-btn primary">
+                        🎫 Generate Queue Token
+                    </button>
+                </form>
             </div>
-            <button type="submit">Get Queue Token</button>
-        </form>
-        <div id="tokenOutput"></div>
+
+            <!-- Registration Info & Guidelines -->
+            <div class="dashboard-section">
+                <h3>ℹ️ Registration Guidelines</h3>
+                <div class="info-cards">
+                    <div class="info-card emergency">
+                        <div class="info-icon">🚨</div>
+                        <h4>Emergency Patients</h4>
+                        <p>Patients requiring immediate medical attention. These include:</p>
+                        <ul>
+                            <li>Severe injuries or trauma</li>
+                            <li>Chest pain or breathing difficulties</li>
+                            <li>Severe allergic reactions</li>
+                            <li>Loss of consciousness</li>
+                            <li>Severe bleeding</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="info-card normal">
+                        <div class="info-icon">👥</div>
+                        <h4>Normal Patients</h4>
+                        <p>Patients for routine medical care including:</p>
+                        <ul>
+                            <li>Regular check-ups</li>
+                            <li>Follow-up appointments</li>
+                            <li>Minor injuries or illnesses</li>
+                            <li>Prescription renewals</li>
+                            <li>Preventive care</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="registration-stats">
+                    <h4>📊 Current Queue Status</h4>
+                    <div class="stats-mini">
+                        <div class="stat-mini emergency">
+                            <span class="stat-label">Emergency</span>
+                            <span class="stat-value" id="currentEmergency">0</span>
+                        </div>
+                        <div class="stat-mini normal">
+                            <span class="stat-label">Normal</span>
+                            <span class="stat-value" id="currentNormal">0</span>
+                        </div>
+                        <div class="stat-mini total">
+                            <span class="stat-label">Total Waiting</span>
+                            <span class="stat-value" id="currentTotal">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Token Output Section -->
+            <div class="dashboard-section full-width" id="tokenSection" style="display: none;">
+                <h3>🎫 Registration Complete</h3>
+                <div id="tokenOutput"></div>
+            </div>
+
+            <!-- Recent Registrations -->
+            <div class="dashboard-section full-width">
+                <h3>📋 Recent Registrations</h3>
+                <div class="recent-registrations" id="recentRegistrations">
+                    <p class="no-registrations">No recent registrations</p>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="dashboard-section full-width">
+                <h3>⚡ Quick Actions</h3>
+                <div class="quick-actions-reg">
+                    <a href="Queue.html" class="action-btn secondary">
+                        📊 View Live Queue
+                    </a>
+                    <a href="index.html" class="action-btn success">
+                        🏠 Go to Dashboard
+                    </a>
+                    <button onclick="clearForm()" class="action-btn" style="background: #6c757d;">
+                        🔄 Clear Form
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
+
     <footer>
-        <p>I am : Yosef Melaku  my first website</p>
-        <p>&copy; All rights reserved</p>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Smart PQMS</h4>
+                <p>Developed by: Yosef Melaku</p>
+                <p>Patient Registration System</p>
+            </div>
+            <div class="footer-section">
+                <h4>Registration Info</h4>
+                <p>🕒 Registration Hours: 24/7</p>
+                <p>🚨 Emergency: Immediate priority</p>
+                <p>👥 Normal: First-come, first-served</p>
+            </div>
+            <div class="footer-section">
+                <h4>Need Help?</h4>
+                <p>📞 <a href="contact.html">Contact Support</a></p>
+                <p>❓ Registration assistance available</p>
+                <p>🔄 Last Updated: <span id="regFooterTime">--:--</span></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Smart Patient Queue Management System. All rights reserved.</p>
+        </div>
     </footer>
+
     <script src="reg_val.js"></script>
     <script src="queue_val.js"></script>
+    <script>
+        // Enhanced registration page functionality
+        function updateRegistrationStats() {
+            const patients = JSON.parse(localStorage.getItem('patientList')) || [];
+            const waiting = patients.filter(p => p.status === 'Waiting');
+            const emergency = waiting.filter(p => p.category === 'Emergency').length;
+            const normal = waiting.filter(p => p.category === 'Normal').length;
+            
+            document.getElementById('currentEmergency').textContent = emergency;
+            document.getElementById('currentNormal').textContent = normal;
+            document.getElementById('currentTotal').textContent = waiting.length;
+        }
+        
+        function updateRecentRegistrations() {
+            const patients = JSON.parse(localStorage.getItem('patientList')) || [];
+            const recent = patients.slice(-5).reverse(); // Last 5 registrations
+            const container = document.getElementById('recentRegistrations');
+            
+            if (recent.length === 0) {
+                container.innerHTML = '<p class="no-registrations">No recent registrations</p>';
+                return;
+            }
+            
+            container.innerHTML = recent.map(p => `
+                <div class="recent-item ${p.category.toLowerCase()}">
+                    <div class="recent-token">${p.token}</div>
+                    <div class="recent-info">
+                        <div class="recent-name">${p.name}</div>
+                        <div class="recent-category">${p.category}</div>
+                    </div>
+                    <div class="recent-time">${new Date(p.time).toLocaleTimeString()}</div>
+                    <div class="recent-status ${p.status.toLowerCase()}">${p.status}</div>
+                </div>
+            `).join('');
+        }
+        
+        function clearForm() {
+            document.getElementById('regForm').reset();
+            document.getElementById('tokenSection').style.display = 'none';
+            showNotification('Form cleared', 'info');
+        }
+        
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => notification.remove(), 3000);
+        }
+        
+        function updateFooterTime() {
+            document.getElementById('regFooterTime').textContent = new Date().toLocaleTimeString();
+        }
+        
+        // Enhanced form submission handling
+        document.addEventListener('DOMContentLoaded', function() {
+            updateRegistrationStats();
+            updateRecentRegistrations();
+            updateFooterTime();
+            
+            // Update stats every 30 seconds
+            setInterval(() => {
+                updateRegistrationStats();
+                updateRecentRegistrations();
+                updateFooterTime();
+            }, 30000);
+            
+            // Override the original form submission to show enhanced token output
+            const regForm = document.getElementById('regForm');
+            regForm.addEventListener('submit', function(e) {
+                // Let the original validation run first
+                setTimeout(() => {
+                    const tokenOutput = document.getElementById('tokenOutput');
+                    if (tokenOutput.innerHTML.includes('Registration Successful')) {
+                        // Show the token section
+                        document.getElementById('tokenSection').style.display = 'block';
+                        
+                        // Scroll to token section
+                        document.getElementById('tokenSection').scrollIntoView({ 
+                            behavior: 'smooth', 
+                            block: 'center' 
+                        });
+                        
+                        // Update stats and recent registrations
+                        setTimeout(() => {
+                            updateRegistrationStats();
+                            updateRecentRegistrations();
+                        }, 100);
+                        
+                        // Show success notification
+                        showNotification('Patient registered successfully!', 'success');
+                    }
+                }, 100);
+            });
+            
+            // Real-time form validation feedback
+            const inputs = regForm.querySelectorAll('input, select, textarea');
+            inputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    if (this.hasAttribute('required') && !this.value.trim()) {
+                        this.classList.add('error');
+                    } else {
+                        this.classList.remove('error');
+                        this.classList.add('success');
+                    }
+                });
+                
+                input.addEventListener('input', function() {
+                    this.classList.remove('error', 'success');
+                });
+            });
+        });
+    </script>
 </body>
 </html>

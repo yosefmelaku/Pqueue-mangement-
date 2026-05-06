@@ -24,16 +24,53 @@ if(regForm) {
     });
 }
 
-function saveAndRender() {
-    // SORTING TRIAGE LOGIC:
-    // 1. Emergency patients jump to top.
-    // 2. Then sort by registration time.
-    patients.sort((a, b) => {
-        if (a.category === b.category) return a.time - b.time;
-        return a.category === "Emergency" ? -1 : 1;
-    });
+// Data integrity and concurrency protection
+function safeUpdateLocalStorage(updateFn) {
+    const lockKey = 'pqms_lock';
+    const lockTimeout = 5000; // 5 seconds
+    
+    if (localStorage.getItem(lockKey)) {
+        const lockTime = parseInt(localStorage.getItem(lockKey));
+        if (Date.now() - lockTime < lockTimeout) {
+            setTimeout(() => safeUpdateLocalStorage(updateFn), 100);
+            return;
+        }
+    }
+    
+    localStorage.setItem(lockKey, Date.now().toString());
+    try {
+        updateFn();
+    } finally {
+        localStorage.removeItem(lockKey);
+    }
+}
 
-    localStorage.setItem('patientList', JSON.stringify(patients));
+function saveAndRender() {
+    safeUpdateLocalStorage(() => {
+        // SORTING TRIAGE LOGIC:
+        // 1. Emergency patients jump to top.
+        // 2. Then sort by registration time.
+        patients.sort((a, b) => {
+            if (a.category === b.category) return a.time - b.time;
+            return a.category === "Emergency" ? -1 : 1;
+        });
+
+        // Storage management
+        try {
+            const data = JSON.stringify(patients);
+            if (data.length > 5000000) { // ~5MB limit
+                patients = patients.slice(-100);
+            }
+            localStorage.setItem('patientList', JSON.stringify(patients));
+        } catch (e) {
+            if (e.name === 'QuotaExceededError') {
+                alert('Storage full. Clearing old data...');
+                patients = patients.slice(-50);
+                localStorage.setItem('patientList', JSON.stringify(patients));
+            }
+        }
+    });
+    
     renderQueue();
 }
 
@@ -53,15 +90,22 @@ function renderQueue() {
 
     listBody.innerHTML = '';
     
-    // Build Table
+    // Build Table with wait times
     patients.forEach(p => {
         const row = document.createElement('tr');
         if(p.category === 'Emergency') row.className = 'emerg-row';
+        
+        // Calculate wait time
+        const waitTime = p.status === 'Waiting' ? 
+            `${Math.floor((Date.now() - p.time) / 60000)} min` : 
+            p.status === 'Serving' ? 'Being Served' : 'Completed';
+        
         row.innerHTML = `
             <td>${p.token}</td>
             <td>${p.name}</td>
             <td><span class="badge ${p.category === 'Emergency' ? 'badge-emerg' : 'badge-normal'}">${p.category}</span></td>
-            <td><b>${p.status}</b></td>`;
+            <td><b>${p.status}</b></td>
+            <td>${waitTime}</td>`;
         listBody.appendChild(row);
     });
 }

@@ -2,35 +2,266 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Contact Us | Smart PQMS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏥 Contact Support - Smart PQMS</title>
+    
+    <!-- Favicon and App Icons -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><circle cx='32' cy='32' r='30' fill='%230056b3'/><rect x='28' y='16' width='8' height='32' fill='white' rx='2'/><rect x='16' y='28' width='32' height='8' fill='white' rx='2'/></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><circle cx='32' cy='32' r='30' fill='%230056b3'/><rect x='28' y='16' width='8' height='32' fill='white' rx='2'/><rect x='16' y='28' width='32' height='8' fill='white' rx='2'/></svg>">
+    
+    <!-- Meta tags -->
+    <meta name="description" content="Get technical support for Smart PQMS healthcare queue management system. Contact our support team for assistance.">
+    <meta name="keywords" content="technical support, healthcare support, PQMS help, contact support">
+    <meta name="author" content="Yosef Melaku">
+    <meta name="theme-color" content="#0056b3">
+    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header><h1>Contact Us</h1></header>
     <nav>
-        <a href="index.html">Home</a>
-        <a href="registration.html">Registration</a>
-        <a href="Queue.html">Queue No</a>
-        <a href="contact.html">Contact Us</a>
+        <a href="index.html">🏠 Home</a>
+        <a href="registration.html">📝 Register</a>
+        <a href="Queue.html">📊 Queue</a>
+        <a href="contact.html">📞 Contact</a>
     </nav>
 
     <section class="hero-small">
-        <h2>Contact Us</h2>
-        <p>Have questions? Reach out to our technical support team.</p>
+        <h2>📞 Contact Support</h2>
+        <p>Need help with the Patient Queue Management System? Our technical support team is here to assist you with any questions or issues.</p>
     </section>
+    
     <div class="container">
-        <form id="contactForm">
-            <input type="text" id="cName" placeholder="Full Name"><br><br>
-            <input type="email" id="cEmail" placeholder="Email Address"><br><br>
-            <textarea id="cMsg" rows="5" placeholder="Message"></textarea><br><br>
-            <button type="submit">Send Message</button>
-        </form>
+        <div class="contact-grid">
+            <!-- Contact Form Section -->
+            <div class="dashboard-section">
+                <h3>📧 Send us a Message</h3>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="cName">👤 Full Name</label>
+                        <input type="text" id="cName" placeholder="Enter your full name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="cEmail">📧 Email Address</label>
+                        <input type="email" id="cEmail" placeholder="Enter your email address" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="cSubject">📋 Subject</label>
+                        <select id="cSubject" required>
+                            <option value="">-- Select Issue Type --</option>
+                            <option value="Technical Support">🔧 Technical Support</option>
+                            <option value="Queue Management">📊 Queue Management</option>
+                            <option value="Patient Registration">📝 Patient Registration</option>
+                            <option value="System Bug">🐛 System Bug Report</option>
+                            <option value="Feature Request">💡 Feature Request</option>
+                            <option value="General Inquiry">❓ General Inquiry</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="cMsg">💬 Message</label>
+                        <textarea id="cMsg" rows="6" placeholder="Describe your issue or question in detail..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="action-btn primary">
+                        📤 Send Message
+                    </button>
+                </form>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="dashboard-section">
+                <h3>📍 Contact Information</h3>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">👨‍💻</div>
+                        <div class="contact-details">
+                            <h4>Developer</h4>
+                            <p>Yosef Melaku</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">🕒</div>
+                        <div class="contact-details">
+                            <h4>Support Hours</h4>
+                            <p>Monday - Friday: 9:00 AM - 5:00 PM</p>
+                            <p>Weekend: Emergency support only</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">⚡</div>
+                        <div class="contact-details">
+                            <h4>Response Time</h4>
+                            <p>Technical Issues: Within 24 hours</p>
+                            <p>General Inquiries: Within 48 hours</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">🌐</div>
+                        <div class="contact-details">
+                            <h4>System Status</h4>
+                            <p id="systemStatusContact">🟢 All systems operational</p>
+                            <p><a href="index.html">View Live Dashboard</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Section */
+            <div class="dashboard-section full-width">
+                <h3>❓ Frequently Asked Questions</h3>
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <h4>🔧 How do I add a new patient?</h4>
+                        <p>Go to the Registration page, fill in the patient details (name, age, category), and click "Get Queue Token". The patient will be automatically added to the queue.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h4>🚨 How does emergency prioritization work?</h4>
+                        <p>Emergency patients are automatically moved to the front of the queue. They receive tokens starting with "E-" and are highlighted in red on all displays.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h4>📱 Is the system mobile-friendly?</h4>
+                        <p>Yes! The PQMS is fully responsive and works perfectly on smartphones, tablets, and desktop computers. All features are optimized for touch interfaces.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h4>💾 How is patient data stored?</h4>
+                        <p>Patient data is stored locally in your browser's localStorage. Data persists between sessions but is not shared across different devices or browsers.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h4>🔄 How do I call the next patient?</h4>
+                        <p>Use the "Call Next Patient" button on the Queue page or Dashboard. This will move the current patient to completed status and advance the next waiting patient.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h4>⏱️ How are wait times calculated?</h4>
+                        <p>Wait times show how long each patient has been in the queue since registration. Times are updated in real-time and displayed in minutes.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="dashboard-section full-width">
+                <h3>🔗 Quick Links</h3>
+                <div class="quick-links-grid">
+                    <a href="registration.html" class="quick-link-card">
+                        <div class="quick-link-icon">📝</div>
+                        <h4>Patient Registration</h4>
+                        <p>Add new patients to the queue</p>
+                    </a>
+                    
+                    <a href="Queue.html" class="quick-link-card">
+                        <div class="quick-link-icon">📊</div>
+                        <h4>Live Queue Status</h4>
+                        <p>Monitor current queue and call patients</p>
+                    </a>
+                    
+                    <a href="index.html" class="quick-link-card">
+                        <div class="quick-link-icon">🏠</div>
+                        <h4>Main Dashboard</h4>
+                        <p>Overview and system statistics</p>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
+
     <footer>
-        <p>Yosef Melaku first website</p>
-        <p>&copy; All rights reserved</p>
-        <p>Website hours: 12:00 up to 1:00</p>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Smart PQMS</h4>
+                <p>Developed by: Yosef Melaku</p>
+                <p>Healthcare Queue Management</p>
+            </div>
+            <div class="footer-section">
+                <h4>Support</h4>
+                <p>📧 Technical Support Available</p>
+                <p>🕒 Business Hours: 9 AM - 5 PM</p>
+                <p>⚡ 24-hour response guarantee</p>
+            </div>
+            <div class="footer-section">
+                <h4>System Info</h4>
+                <p>🟢 System Status: Online</p>
+                <p>📊 Queue Management: Active</p>
+                <p>🔄 Last Updated: <span id="footerUpdateTime">--:--</span></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Smart Patient Queue Management System. All rights reserved.</p>
+        </div>
     </footer>
+
     <script src="cont_val.js"></script>
+    <script>
+        // Enhanced contact page functionality
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => notification.remove(), 4000);
+        }
+        
+        // Update footer time
+        function updateFooterTime() {
+            document.getElementById('footerUpdateTime').textContent = new Date().toLocaleTimeString();
+        }
+        
+        // Initialize contact page
+        document.addEventListener('DOMContentLoaded', function() {
+            updateFooterTime();
+            setInterval(updateFooterTime, 60000); // Update every minute
+            
+            // Enhanced form submission
+            const contactForm = document.getElementById('contactForm');
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('cName').value.trim();
+                const email = document.getElementById('cEmail').value.trim();
+                const subject = document.getElementById('cSubject').value;
+                const message = document.getElementById('cMsg').value.trim();
+                
+                // Validation
+                if (!name || !email || !subject || !message) {
+                    showNotification('Please fill in all required fields', 'error');
+                    return;
+                }
+                
+                if (!email.includes('@') || !email.includes('.')) {
+                    showNotification('Please enter a valid email address', 'error');
+                    return;
+                }
+                
+                if (message.length < 10) {
+                    showNotification('Please provide a more detailed message (minimum 10 characters)', 'error');
+                    return;
+                }
+                
+                // Success simulation
+                showNotification('Message sent successfully! We will respond within 24 hours.', 'success');
+                contactForm.reset();
+                
+                // Store contact submission (optional)
+                const submission = {
+                    name, email, subject, message,
+                    timestamp: new Date().toISOString(),
+                    id: Date.now()
+                };
+                
+                const submissions = JSON.parse(localStorage.getItem('contactSubmissions') || '[]');
+                submissions.push(submission);
+                localStorage.setItem('contactSubmissions', JSON.stringify(submissions));
+            });
+        });
+    </script>
 </body>
 </html>

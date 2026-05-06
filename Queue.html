@@ -2,37 +2,216 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Queue Status | Smart PQMS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏥 Live Queue Status - Smart PQMS</title>
+    
+    <!-- Favicon and App Icons -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><circle cx='32' cy='32' r='30' fill='%230056b3'/><rect x='28' y='16' width='8' height='32' fill='white' rx='2'/><rect x='16' y='28' width='32' height='8' fill='white' rx='2'/></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><circle cx='32' cy='32' r='30' fill='%230056b3'/><rect x='28' y='16' width='8' height='32' fill='white' rx='2'/><rect x='16' y='28' width='32' height='8' fill='white' rx='2'/></svg>">
+    
+    <!-- Meta tags -->
+    <meta name="description" content="Monitor live patient queue status, call next patients, and manage healthcare queue operations in real-time.">
+    <meta name="keywords" content="queue status, patient queue, healthcare management, live queue monitoring">
+    <meta name="author" content="Yosef Melaku">
+    <meta name="theme-color" content="#0056b3">
+    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header><h1>Live Queue</h1></header>
     <nav>
-        <a href="index.html">Home</a>
-        <a href="registration.html">Registration</a>
-        <a href="Queue.html">Queue No</a>
-        <a href="contact.html">Contact Us</a>
+        <a href="index.html">🏠 Home</a>
+        <a href="registration.html">📝 Register</a>
+        <a href="Queue.html">📊 Queue</a>
+        <a href="contact.html">📞 Contact</a>
     </nav>
 
     <section class="hero-small">
-        <h2>Live Queue Status</h2>
-        <p>Monitor real-time patient serving and waiting lists.</p>
+        <h2>📊 Live Queue Status</h2>
+        <p>Monitor real-time patient serving and waiting lists with instant updates.</p>
     </section>
+    
     <div class="container">
-        <div class="queue-display"><h3>Serving</h3><div class="queue-number" id="servingNo">---</div></div>
-        <div class="queue-display"><h3>Next</h3><div class="queue-number" id="nextNo">---</div></div>
-        <h3>Full Waiting List</h3>
-        <table id="patientTable">
-            <thead><tr><th>Token</th><th>Patient Name</th><th>Category</th><th>Status</th></tr></thead>
-            <tbody id="queueListBody"></tbody>
-        </table>
-        <br>
-        <button onclick="updateQueue()">Update Queue</button>
+        <!-- Queue Status Grid -->
+        <div class="queue-status-grid">
+            <!-- Live Statistics -->
+            <div class="dashboard-section">
+                <h3>📈 Queue Statistics</h3>
+                <div class="stats-grid">
+                    <div class="stat-card emergency">
+                        <h4>🚨 Emergency</h4>
+                        <div class="stat-number" id="emergencyCount">0</div>
+                        <p>Patients Waiting</p>
+                    </div>
+                    <div class="stat-card normal">
+                        <h4>👥 Normal</h4>
+                        <div class="stat-number" id="normalCount">0</div>
+                        <p>Patients Waiting</p>
+                    </div>
+                    <div class="stat-card total">
+                        <h4>📊 Total</h4>
+                        <div class="stat-number" id="totalCount">0</div>
+                        <p>In Queue</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Current Serving -->
+            <div class="dashboard-section">
+                <h3>🔔 Now Serving</h3>
+                <div class="queue-display">
+                    <h4>Current Patient</h4>
+                    <div class="queue-number" id="servingNo">---</div>
+                    <p id="servingDetails">No patient currently being served</p>
+                </div>
+            </div>
+
+            <!-- Next Patient -->
+            <div class="dashboard-section">
+                <h3>⏭️ Next Patient</h3>
+                <div class="queue-display">
+                    <h4>Up Next</h4>
+                    <div class="queue-number" id="nextNo">---</div>
+                    <p id="nextDetails">No patients waiting</p>
+                </div>
+            </div>
+
+            <!-- Queue Actions -->
+            <div class="dashboard-section">
+                <h3>⚡ Queue Actions</h3>
+                <div class="quick-actions">
+                    <button onclick="updateQueue()" class="action-btn primary">
+                        📢 Call Next Patient
+                    </button>
+                    <button onclick="refreshQueue()" class="action-btn secondary">
+                        🔄 Refresh Queue
+                    </button>
+                    <a href="registration.html" class="action-btn success">
+                        ➕ Add New Patient
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Full Waiting List -->
+        <div class="dashboard-section full-width" style="margin-top: 25px;">
+            <h3>📋 Full Waiting List</h3>
+            <div class="table-container">
+                <table id="patientTable">
+                    <thead>
+                        <tr>
+                            <th>Token</th>
+                            <th>Patient Name</th>
+                            <th>Category</th>
+                            <th>Status</th>
+                            <th>Wait Time</th>
+                        </tr>
+                    </thead>
+                    <tbody id="queueListBody"></tbody>
+                </table>
+            </div>
+            <div class="table-info">
+                <p><span class="info-icon">ℹ️</span> Emergency patients are automatically prioritized and highlighted in red.</p>
+            </div>
+        </div>
     </div>
+
     <footer>
-        <p>Group member: Yosef Melaku</p>
-        <p>&copy; All rights reserved</p>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Smart PQMS</h4>
+                <p>Developed by: Yosef Melaku</p>
+                <p>Queue Management System</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Actions</h4>
+                <a href="registration.html">Add Patient</a>
+                <a href="index.html">Dashboard</a>
+                <a href="contact.html">Support</a>
+            </div>
+            <div class="footer-section">
+                <h4>Queue Status</h4>
+                <p id="queueStatus">🟢 Active</p>
+                <p id="lastQueueUpdate">Last updated: <span id="lastUpdateTime">--:--</span></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Smart PQMS. All rights reserved.</p>
+        </div>
     </footer>
+
     <script src="queue_val.js"></script>
+    <script>
+        // Enhanced queue page functionality
+        function updateQueueStats() {
+            const patients = JSON.parse(localStorage.getItem('patientList')) || [];
+            const waiting = patients.filter(p => p.status === 'Waiting');
+            const emergency = waiting.filter(p => p.category === 'Emergency').length;
+            const normal = waiting.filter(p => p.category === 'Normal').length;
+            const current = patients.find(p => p.status === 'Serving');
+            
+            // Update counters
+            document.getElementById('emergencyCount').textContent = emergency;
+            document.getElementById('normalCount').textContent = normal;
+            document.getElementById('totalCount').textContent = waiting.length;
+            
+            // Update serving details
+            const servingDetails = document.getElementById('servingDetails');
+            if (current) {
+                servingDetails.textContent = `${current.name} (${current.category})`;
+                servingDetails.style.color = current.category === 'Emergency' ? '#d9534f' : '#5bc0de';
+            } else {
+                servingDetails.textContent = 'No patient currently being served';
+                servingDetails.style.color = '#666';
+            }
+            
+            // Update next patient details
+            const nextDetails = document.getElementById('nextDetails');
+            if (waiting[0]) {
+                nextDetails.textContent = `${waiting[0].name} (${waiting[0].category})`;
+                nextDetails.style.color = waiting[0].category === 'Emergency' ? '#d9534f' : '#5bc0de';
+            } else {
+                nextDetails.textContent = 'No patients waiting';
+                nextDetails.style.color = '#666';
+            }
+            
+            // Update last update time
+            document.getElementById('lastUpdateTime').textContent = new Date().toLocaleTimeString();
+        }
+        
+        function refreshQueue() {
+            updateQueueStats();
+            renderQueue();
+            showNotification('Queue refreshed successfully', 'success');
+        }
+        
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => notification.remove(), 3000);
+        }
+        
+        // Auto-refresh every 15 seconds for queue page
+        setInterval(() => {
+            updateQueueStats();
+            renderQueue();
+        }, 15000);
+        
+        // Initialize queue page
+        document.addEventListener('DOMContentLoaded', function() {
+            updateQueueStats();
+            renderQueue();
+        });
+        
+        // Override the original updateQueue function to include stats update
+        const originalUpdateQueue = window.updateQueue;
+        window.updateQueue = function() {
+            originalUpdateQueue();
+            updateQueueStats();
+            showNotification('Next patient called successfully', 'success');
+        };
+    </script>
 </body>
 </html>
