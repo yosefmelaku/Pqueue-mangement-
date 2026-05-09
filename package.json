@@ -2,12 +2,12 @@
   "name": "pqueue-management",
   "version": "1.0.0",
   "description": "Smart Patient Queue Management System - Healthcare queue management with intelligent patient prioritization",
-  "main": "server.js",
+  "main": "index.html",
   "scripts": {
-    "dev": "node server.js",
-    "build": "echo 'No build step required for static files'",
-    "start": "node server.js",
-    "vercel-build": "echo 'No build step required'"
+    "dev": "python -m http.server 8000 || php -S localhost:8000 || npx serve .",
+    "build": "echo 'Static site - no build required'",
+    "start": "echo 'Static site deployed'",
+    "vercel-build": "echo 'No build step required for static site'"
   },
   "keywords": [
     "healthcare",
