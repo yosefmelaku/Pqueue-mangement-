@@ -105,7 +105,8 @@ const server = http.createServer((req, res) => {
     'Cache-Control': 'public, max-age=3600', // Cache for 1 hour
     'X-Content-Type-Options': 'nosniff',
     'X-Frame-Options': 'DENY',
-    'X-XSS-Protection': '1; mode=block'
+    'X-XSS-Protection': '1; mode=block',
+    'Referrer-Policy': 'strict-origin-when-cross-origin'
   });
 
   // Create read stream and pipe to response

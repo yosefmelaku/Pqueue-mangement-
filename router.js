@@ -22,13 +22,16 @@ class SimpleRouter {
             this.handleRoute(window.location.pathname);
         });
         
-        // Handle navigation clicks
+        // Handle navigation clicks - FIXED to prevent about:blank
         document.addEventListener('click', (e) => {
             const link = e.target.closest('a[href^="/"]');
-            if (link && !link.hasAttribute('target')) {
-                e.preventDefault();
+            if (link && !link.hasAttribute('target') && !link.hasAttribute('download')) {
+                // Only prevent default for internal navigation
                 const href = link.getAttribute('href');
-                this.navigate(href);
+                if (href && href.startsWith('/') && !href.startsWith('//')) {
+                    e.preventDefault();
+                    this.navigate(href);
+                }
             }
         });
         
@@ -37,25 +40,18 @@ class SimpleRouter {
     }
     
     navigate(path) {
-        if (window.location.pathname !== path) {
-            window.history.pushState({}, '', path);
+        // Ensure path is valid
+        if (!path || path === '#') {
+            return;
         }
-        this.handleRoute(path);
+        
+        // For deployment, use full page navigation instead of SPA
+        window.location.href = path;
     }
     
     handleRoute(path) {
-        // Normalize path
-        if (path !== '/' && path.endsWith('/')) {
-            path = path.slice(0, -1);
-        }
-        
-        const targetPage = this.routes[path] || this.routes['/'];
-        
-        // Only navigate if we're not already on the target page
-        const currentPage = this.getCurrentPage();
-        if (currentPage !== targetPage) {
-            window.location.href = path;
-        }
+        // This method is kept for future SPA implementation
+        // Currently using full page navigation for better compatibility
     }
     
     getCurrentPage() {

@@ -54,10 +54,10 @@
     </div>
 
     <nav>
-        <a href="/">🏠 Home</a>
-        <a href="/registration">📝 Register</a>
-        <a href="/queue">📊 Queue</a>
-        <a href="/contact">📞 Contact</a>
+        <a href="/" title="Home Dashboard">🏠 Home</a>
+        <a href="/registration" title="Patient Registration">📝 Register</a>
+        <a href="/queue" title="Queue Management">📊 Queue</a>
+        <a href="/contact" title="Contact Support">📞 Contact</a>
     </nav>
 
     <section class="hero">
@@ -98,8 +98,8 @@
             </div>
             
             <div class="cta-buttons">
-                <a href="/registration" class="cta-button primary">Register Patient</a>
-                <a href="/queue" class="cta-button secondary">View Queue</a>
+                <a href="/registration" class="cta-button primary" title="Register New Patient">Register Patient</a>
+                <a href="/queue" class="cta-button secondary" title="View Live Queue">View Queue</a>
             </div>
         </div>
     </section>
@@ -234,6 +234,7 @@
     </footer>
 
     <script src="queue_val.js"></script>
+    <script src="fallback.js"></script>
     <script src="router.js"></script>
     <script>
         // Enhanced dashboard functionality
