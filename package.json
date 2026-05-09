@@ -1,27 +1,11 @@
 {
   "name": "pqueue-management",
   "version": "1.0.0",
-  "description": "Smart Patient Queue Management System - Healthcare queue management with intelligent patient prioritization",
-  "main": "index.html",
+  "description": "Smart Patient Queue Management System",
   "scripts": {
-    "dev": "python -m http.server 8000 || php -S localhost:8000 || npx serve .",
-    "build": "echo 'Static site - no build required'",
-    "start": "echo 'Static site deployed'",
-    "vercel-build": "echo 'No build step required for static site'"
+    "build": "echo 'Static site - no build required'"
   },
-  "keywords": [
-    "healthcare",
-    "queue-management",
-    "patient-management",
-    "triage",
-    "medical",
-    "hospital"
-  ],
+  "keywords": ["healthcare", "queue-management", "patient-management"],
   "author": "Yosef Melaku",
-  "license": "MIT",
-  "dependencies": {},
-  "devDependencies": {},
-  "engines": {
-    "node": ">=18.0.0"
-  }
+  "license": "MIT"
 }
