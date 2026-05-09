@@ -27,9 +27,27 @@ const server = http.createServer((req, res) => {
   const parsedUrl = url.parse(req.url);
   let pathname = parsedUrl.pathname;
 
-  // Default to index.html for root
-  if (pathname === '/') {
-    pathname = '/index.html';
+  // Remove trailing slash except for root
+  if (pathname !== '/' && pathname.endsWith('/')) {
+    pathname = pathname.slice(0, -1);
+  }
+
+  // Route mapping for clean URLs
+  const routes = {
+    '/': '/index.html',
+    '/home': '/index.html',
+    '/dashboard': '/index.html',
+    '/register': '/registration.html',
+    '/registration': '/registration.html',
+    '/queue': '/Queue.html',
+    '/status': '/Queue.html',
+    '/contact': '/contact.html',
+    '/support': '/contact.html'
+  };
+
+  // Check if it's a defined route
+  if (routes[pathname]) {
+    pathname = routes[pathname];
   }
 
   // Try to serve the exact path first
@@ -41,6 +59,14 @@ const server = http.createServer((req, res) => {
     if (fs.existsSync(htmlPath)) {
       filePath = htmlPath;
       pathname = pathname + '.html';
+    }
+  }
+
+  // If still not found, check if it's a page route and serve index.html (SPA behavior)
+  if (!fs.existsSync(filePath)) {
+    const pageRoutes = ['/dashboard', '/register', '/registration', '/queue', '/status', '/contact', '/support'];
+    if (pageRoutes.some(route => pathname.startsWith(route))) {
+      filePath = path.join(__dirname, '/index.html');
     }
   }
 

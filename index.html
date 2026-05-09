@@ -54,10 +54,10 @@
     </div>
 
     <nav>
-        <a href="index.html">🏠 Home</a>
-        <a href="registration.html">📝 Register</a>
-        <a href="Queue.html">📊 Queue</a>
-        <a href="contact.html">📞 Contact</a>
+        <a href="/">🏠 Home</a>
+        <a href="/registration">📝 Register</a>
+        <a href="/queue">📊 Queue</a>
+        <a href="/contact">📞 Contact</a>
     </nav>
 
     <section class="hero">
@@ -98,8 +98,8 @@
             </div>
             
             <div class="cta-buttons">
-                <a href="registration.html" class="cta-button primary">Register Patient</a>
-                <a href="Queue.html" class="cta-button secondary">View Queue</a>
+                <a href="/registration" class="cta-button primary">Register Patient</a>
+                <a href="/queue" class="cta-button secondary">View Queue</a>
             </div>
         </div>
     </section>
@@ -158,7 +158,7 @@
                     <button onclick="refreshDashboard()" class="action-btn secondary">
                         🔄 Refresh Dashboard
                     </button>
-                    <a href="registration.html" class="action-btn success">
+                    <a href="/registration" class="action-btn success">
                         ➕ Add New Patient
                     </a>
                 </div>
@@ -211,9 +211,9 @@
             </div>
             <div class="footer-section">
                 <h4>Quick Links</h4>
-                <a href="registration.html">Patient Registration</a>
-                <a href="Queue.html">Queue Status</a>
-                <a href="contact.html">Contact Support</a>
+                <a href="/registration">Patient Registration</a>
+                <a href="/queue">Queue Status</a>
+                <a href="/contact">Contact Support</a>
             </div>
             <div class="footer-section">
                 <h4>System Status</h4>
@@ -234,6 +234,7 @@
     </footer>
 
     <script src="queue_val.js"></script>
+    <script src="router.js"></script>
     <script>
         // Enhanced dashboard functionality
         function updateDashboardStats() {

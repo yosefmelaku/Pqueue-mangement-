@@ -19,10 +19,10 @@
 </head>
 <body>
     <nav>
-        <a href="index.html">🏠 Home</a>
-        <a href="registration.html">📝 Register</a>
-        <a href="Queue.html">📊 Queue</a>
-        <a href="contact.html">📞 Contact</a>
+        <a href="/">🏠 Home</a>
+        <a href="/registration">📝 Register</a>
+        <a href="/queue">📊 Queue</a>
+        <a href="/contact">📞 Contact</a>
     </nav>
 
     <section class="hero-small">
@@ -105,7 +105,7 @@
                         <div class="contact-details">
                             <h4>System Status</h4>
                             <p id="systemStatusContact">🟢 All systems operational</p>
-                            <p><a href="index.html">View Live Dashboard</a></p>
+                            <p><a href="/">View Live Dashboard</a></p>
                         </div>
                     </div>
                 </div>
@@ -151,19 +151,19 @@
             <div class="dashboard-section full-width">
                 <h3>🔗 Quick Links</h3>
                 <div class="quick-links-grid">
-                    <a href="registration.html" class="quick-link-card">
+                    <a href="/registration" class="quick-link-card">
                         <div class="quick-link-icon">📝</div>
                         <h4>Patient Registration</h4>
                         <p>Add new patients to the queue</p>
                     </a>
                     
-                    <a href="Queue.html" class="quick-link-card">
+                    <a href="/queue" class="quick-link-card">
                         <div class="quick-link-icon">📊</div>
                         <h4>Live Queue Status</h4>
                         <p>Monitor current queue and call patients</p>
                     </a>
                     
-                    <a href="index.html" class="quick-link-card">
+                    <a href="/" class="quick-link-card">
                         <div class="quick-link-icon">🏠</div>
                         <h4>Main Dashboard</h4>
                         <p>Overview and system statistics</p>
@@ -199,6 +199,7 @@
     </footer>
 
     <script src="cont_val.js"></script>
+    <script src="router.js"></script>
     <script>
         // Enhanced contact page functionality
         function showNotification(message, type = 'info') {

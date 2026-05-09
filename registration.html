@@ -19,10 +19,10 @@
 </head>
 <body>
     <nav>
-        <a href="index.html">🏠 Home</a>
-        <a href="registration.html">📝 Register</a>
-        <a href="Queue.html">📊 Queue</a>
-        <a href="contact.html">📞 Contact</a>
+        <a href="/">🏠 Home</a>
+        <a href="/registration">📝 Register</a>
+        <a href="/queue">📊 Queue</a>
+        <a href="/contact">📞 Contact</a>
     </nav>
 
     <section class="hero-small">
@@ -144,10 +144,10 @@
             <div class="dashboard-section full-width">
                 <h3>⚡ Quick Actions</h3>
                 <div class="quick-actions-reg">
-                    <a href="Queue.html" class="action-btn secondary">
+                    <a href="/queue" class="action-btn secondary">
                         📊 View Live Queue
                     </a>
-                    <a href="index.html" class="action-btn success">
+                    <a href="/" class="action-btn success">
                         🏠 Go to Dashboard
                     </a>
                     <button onclick="clearForm()" class="action-btn" style="background: #6c757d;">
@@ -173,7 +173,7 @@
             </div>
             <div class="footer-section">
                 <h4>Need Help?</h4>
-                <p>📞 <a href="contact.html">Contact Support</a></p>
+                <p>📞 <a href="/contact">Contact Support</a></p>
                 <p>❓ Registration assistance available</p>
                 <p>🔄 Last Updated: <span id="regFooterTime">--:--</span></p>
             </div>
@@ -185,6 +185,7 @@
 
     <script src="reg_val.js"></script>
     <script src="queue_val.js"></script>
+    <script src="router.js"></script>
     <script>
         // Enhanced registration page functionality
         function updateRegistrationStats() {

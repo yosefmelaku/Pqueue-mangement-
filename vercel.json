@@ -8,8 +8,45 @@
   ],
   "routes": [
     {
+      "src": "/",
+      "dest": "/server.js"
+    },
+    {
+      "src": "/register",
+      "dest": "/server.js"
+    },
+    {
+      "src": "/registration",
+      "dest": "/server.js"
+    },
+    {
+      "src": "/queue",
+      "dest": "/server.js"
+    },
+    {
+      "src": "/status",
+      "dest": "/server.js"
+    },
+    {
+      "src": "/contact",
+      "dest": "/server.js"
+    },
+    {
+      "src": "/support",
+      "dest": "/server.js"
+    },
+    {
+      "src": "/(.*\\.(css|js|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot))",
+      "dest": "/server.js"
+    },
+    {
       "src": "/(.*)",
       "dest": "/server.js"
     }
-  ]
+  ],
+  "functions": {
+    "server.js": {
+      "maxDuration": 10
+    }
+  }
 }
