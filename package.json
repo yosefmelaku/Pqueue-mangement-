@@ -1,11 +1,5 @@
 {
   "name": "pqueue-management",
   "version": "1.0.0",
-  "description": "Smart Patient Queue Management System",
-  "scripts": {
-    "build": "echo 'Static site - no build required'"
-  },
-  "keywords": ["healthcare", "queue-management", "patient-management"],
-  "author": "Yosef Melaku",
-  "license": "MIT"
+  "private": true
 }
